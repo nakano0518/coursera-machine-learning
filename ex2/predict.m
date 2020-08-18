@@ -15,6 +15,12 @@ p = zeros(m, 1);
 %               You should set p to a vector of 0's and 1's
 %
 
+% dimentions:
+% X     =  m x (n+1)
+% theta = (n+1) x 1
+
+h = sigmoid(X*theta);
+p = (h >= 0.5);
 
 
 
