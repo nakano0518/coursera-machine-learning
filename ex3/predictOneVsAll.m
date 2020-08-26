@@ -30,7 +30,36 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+% num_labels = No. of output classifier (Here, it is 10)
+% DIMENSIONS:
+% all_theta = 10 x 401 = num_labels x (input_layer_size+1) == num_labels x (no_of_features+1)
 
+prob_mat = X * all_theta';     % 5000 x 10 == no_of_input_image x num_labels
+[prob, p] = max(prob_mat,[],2); % m  x 1 
+%returns maximum element in each row  == max. probability and its index for each input image
+%p: predicted output (index)
+%prob: probability of predicted output
+
+%%%%%%%% WORKING: Computation per input image %%%%%%%%%
+% for i = 1:m                               % To iterate through each input sample
+%     one_image = X(i,:);                   % 1 x 401 == 1 x no_of_features
+%     prob_mat = one_image * all_theta';    % 1 x 10  == 1 x num_labels
+%     [prob, out] = max(prob_mat);
+%     %out: predicted output
+%     %prob: probability of predicted output
+%     p(i) = out;
+% end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%% WORKING %%%%%%%%%
+% for i = 1:m
+%     RX = repmat(X(i,:),num_labels,1);
+%     RX = RX .* all_theta;
+%     SX = sum(RX,2);
+%     [val, index] = max(SX);
+%     p(i) = index;
+% end
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
