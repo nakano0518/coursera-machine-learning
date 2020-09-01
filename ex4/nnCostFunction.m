@@ -62,21 +62,63 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% Part1--------------------------------------------------------
 
+X = [ones(m,1), X];  % Adding 1 (bias unit) as first column in X
+a1 = X; % 5000 x 401
+z2 = a1 * Theta1';  % 5000 x 25
+a2 = sigmoid(z2); % 5000 x 25
 
+a2 = [ones(size(a2,1),1), a2]; % Adding 1 (bias unit) as first column in a2  % 5000 x 26
+z3 = a2 * Theta2';  % 5000 x 10
+a3 = sigmoid(z3); % 5000 x 10
 
+h_x = a3; % m x num_labels == 5000 x 10
 
+y_Vec = zeros(m,num_labels);
+for i = 1:m
+    y_Vec(i,y(i)) = 1;
+end
 
+J = (1/m) * sum(sum((-y_Vec.*log(h_x))-((1-y_Vec).*log(1-h_x))));  %scalar
 
+% Part2--------------------------------------------------------
+A1 = X; % 5000 x 401
+  
+Z2 = A1 * Theta1';  % 5000 x 25
+A2 = sigmoid(Z2); % 5000 x 25
+A2 = [ones(size(A2,1),1), A2]; % Adding 1 (bias unit) as first column in a2  % 5000 x 26
 
+Z3 = A2 * Theta2';  % 5000 x 10
+A3 = sigmoid(Z3); % 5000 x 10
 
+% h_x = a3; % 5000 x 10
+  
+y_Vec = zeros(m,num_labels);
+for i = 1:m
+    y_Vec(i,y(i)) = 1;
+end
+  
+  
+DELTA3 = A3 - y_Vec; % 5000 x 10
+DELTA2 = (DELTA3 * Theta2) .* [ones(size(Z2,1),1) sigmoidGradient(Z2)]; % 5000 x 26
+DELTA2 = DELTA2(:,2:end); % 5000 x 25 %Removing delta2 for bias node
 
+Theta1_grad = (1/m) * (DELTA2' * A1); % 25 x 401
+Theta2_grad = (1/m) * (DELTA3' * A2); % 10 x 26
+  
+% Part3--------------------------------------------------------
+reg_term = (lambda/(2*m)) * (sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:,2:end).^2))); %scalar
+%Costfunction With regularization
+J = J + reg_term; %scalar
 
+%Calculating gradients for the regularization
+Theta1_grad_reg_term = (lambda/m) * [zeros(size(Theta1, 1), 1) Theta1(:,2:end)]; % 25 x 401
+Theta2_grad_reg_term = (lambda/m) * [zeros(size(Theta2, 1), 1) Theta2(:,2:end)]; % 10 x 26
 
-
-
-
-
+%Adding regularization term to earlier calculated Theta_grad
+Theta1_grad = Theta1_grad + Theta1_grad_reg_term;
+Theta2_grad = Theta2_grad + Theta2_grad_reg_term;
 
 
 

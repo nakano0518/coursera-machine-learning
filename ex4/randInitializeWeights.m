@@ -18,13 +18,13 @@ W = zeros(L_out, 1 + L_in);
 %
 % Note: The first column of W corresponds to the parameters for the bias unit
 %
+% implement below hint 
+% Randomly initialize the weights to small values
+%  epsilon_init = 0.12;
+%  W = rand(L out, 1 + L in) * 2 * epsilon_init - epsilon init;
 
-
-
-
-
-
-
+epsilon_init = sqrt(6)/(sqrt(L_in)+sqrt(L_out));
+W = - epsilon_init + rand(L_out, 1 + L_in) * 2 * epsilon_init ;
 
 
 % =========================================================================
