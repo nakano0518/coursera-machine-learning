@@ -19,12 +19,12 @@ grad = zeros(size(theta));
 %               You should set J to the cost and grad to the gradient.
 %
 
-%DIMENSIONS:
-%   X = 12x2 = m x 1
-%   y = 12x1 = m x 1
-%   theta = 2x1 = (n+1) x 1
-%   grad = 2x1 = (n+1) x 1
+% dimensions:
+%   X = 12x2 ← 本関数の仮引数Xは[ones(m, 1) X](実引数)で渡す想定(実引数Xは12×1の次元を有するデータ)
+%   y = 12x1
+%   theta = 2x1
 
+  
 h_x = X * theta; % 12x1
 J = (1/(2*m))*sum((h_x - y).^2) + (lambda/(2*m))*sum(theta(2:end).^2); % scalar
 
