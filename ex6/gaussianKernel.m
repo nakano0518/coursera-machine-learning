@@ -16,7 +16,7 @@ sim = 0;
 %
 %
 
-
+sim = exp(-1*sum(abs(x1-x2).^2)/(2*sigma^2));
 
 
 
