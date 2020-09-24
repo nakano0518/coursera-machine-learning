@@ -20,7 +20,15 @@ X_rec = zeros(size(Z, 1), size(U, 1));
 %
 %               Notice that U(j, 1:K) is a row vector.
 %               
+% DIMENSIONS: 
+%    Z = m x K
+%    U = n x n
+%    U_reduce = n x k
+%    K = scalar
+%    X_rec = m x n
 
+U_reduce = U(:,1:K);   % n x k
+X_rec = Z * U_reduce'; % m x n
 
 
 % =============================================================

@@ -18,6 +18,14 @@ Z = zeros(size(X, 1), K);
 %                    projection_k = x' * U(:, k);
 %
 
+% DIMENSIONS:
+%    X = m x n
+%    U = n x n
+%    U_reduce = n x K
+%    K = scalar
+
+U_reduce = U(:,[1:K]);   % n x K
+Z = X * U_reduce;        % m x k
 
 
 
