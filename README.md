@@ -1,0 +1,2 @@
+<img width="800" alt="finish-coursera-machine-learning" src="https://user-images.githubusercontent.com/54522567/95565975-e843ef00-0a5b-11eb-8f55-6713a330736b.JPG">
+<img width="800" alt="grades_of_coursera-machine-learning" src="https://user-images.githubusercontent.com/54522567/95565980-e8dc8580-0a5b-11eb-819f-93b9bb2d45fe.JPG">
